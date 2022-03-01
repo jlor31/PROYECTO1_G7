@@ -14,9 +14,17 @@ public class DefineFnVr {
     public String showVr(String name){
         return null;
     }
-    public HashMap<String, String> getVr{}
-    public HashMap<String, String[]> getFN{}
-    public int getSize{}
-    public ArrayList<String> getBody(String name){}
+    public HashMap<String, String> getVr (){
+        return null;
+    }
+    public HashMap<String, String[]> getFN (){
+        return null;
+    }
+    public int getSize(){
+        return 0;
+    }
+    public ArrayList<String> getBody(String name){
+        return null;
+    }
     public DefineFnVr() {}
 }
