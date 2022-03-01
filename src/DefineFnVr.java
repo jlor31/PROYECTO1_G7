@@ -16,9 +16,7 @@ public class DefineFnVr {
     }
     public HashMap<String, String> getVr{}
     public HashMap<String, String[]> getFN{}
-    public int getSize{
-        return 0;
-    }
+    public int getSize{}
     public ArrayList<String> getBody(String name){}
     public DefineFnVr() {}
 }
