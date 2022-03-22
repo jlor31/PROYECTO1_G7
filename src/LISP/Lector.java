@@ -101,7 +101,6 @@ public class Lector {
 				
 			
 		}
-				
 		
 		// el array esta listo para ser calculado
 		

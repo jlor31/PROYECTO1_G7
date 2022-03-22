@@ -1,9 +1,12 @@
 package LISP;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Interprete {
 
 	static Lector lector = new Lector();
+	
 	
 	public static void prompt() {
 		
@@ -13,7 +16,7 @@ public class Interprete {
 		
 		String lisp_exp = in.nextLine();
 			
-		Operador.calcular(Lector.leer(lisp_exp));
+		Operador.asignar_op(Lector.leer(lisp_exp));
 		
 		prompt();
 		
@@ -21,9 +24,12 @@ public class Interprete {
 	
 	
 	public static void main(String args[]) {
-		
+		System.out.println(" ");
 		System.out.println("------------ INTERPRETE LISP GRUPO 7 ------------");
 		System.out.println(" ");
+		
+		Funciones.listado_funciones.clear();   // limpiando variables y funciones definidas
+		Funciones.listado_variables.clear();
 		
 		
 		prompt();
