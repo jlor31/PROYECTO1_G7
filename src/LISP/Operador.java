@@ -1,6 +1,8 @@
 package LISP;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Operador {
 
@@ -17,35 +19,23 @@ public class Operador {
 	
 	public static void Evaluador(ArrayList<String> expresion) {  // espera ( + 2 sumar ( 2 (sumar (3 2))))
 		
-		ArrayList<Integer> indices_ops_temp = new ArrayList<>(); // indices de las funciones a evaluar
+		ArrayList<Integer> indices_ops_temp; // indices de las funciones a evaluar
 		
 		ArrayList<String> listado_funciones_temp = new ArrayList<>();
 		
 		lista_ops_temp.addAll(expresion);
 		lista_ops_fijo.addAll(expresion);
 		sustituir_vars(lista_ops_temp);
-		
-		
-		for (int i = (lista_ops_temp.size()-1); i>= 0; i--) {
-			
-			if (Funciones.listado_funciones.get(lista_ops_temp.get(i)) != null) {
-				
-				indices_ops_temp.add(i);
-				
-				
-			}
-			
-		}
+
+
+		indices_ops_temp = IntStream.iterate((lista_ops_temp.size() - 1), i -> i >= 0, i -> i - 1).filter(i -> Funciones.listado_funciones.get(lista_ops_temp.get(i)) != null).boxed().collect(Collectors.toCollection(ArrayList::new));
 		
 		
 		for (int i : indices_ops_temp) {
 			
 			ArrayList<String> funcion = new ArrayList<>(Arrays.asList("("));
 			
-			for ( int j = i; !lista_ops_temp.get(j).equals(")"); j ++ ) {
-				
-				funcion.add(lista_ops_temp.get(j));
-			}
+			for ( int j = i; !lista_ops_temp.get(j).equals(")"); j ++ ) funcion.add(lista_ops_temp.get(j));
 			
 			funcion.add(")");
 			funcion.add(")");
@@ -55,28 +45,14 @@ public class Operador {
 			lista_ops_temp.set(i, funcion_evaluada);
 			
 			int quitar_a_partir_de = i + 1 + Funciones.listado_funciones.get(lista_ops_fijo.get(i)).get(0).size() + 1;
-			
-			for (int k = quitar_a_partir_de; k > i; k --) {
-				
-				lista_ops_temp.remove(i+1);
-				
-				
-				
-			}
+
+			IntStream.iterate(quitar_a_partir_de, k -> k > i, k -> k - 1).forEach(k -> lista_ops_temp.remove(i + 1));
 			
 			
 			
-			if (lista_ops_temp.get(i+1).equals(")")) {
-				
-				lista_ops_temp.remove(i+1);
-				
-			}
+			if (lista_ops_temp.get(i+1).equals(")")) lista_ops_temp.remove(i + 1);
 			
-			if (lista_ops_temp.get(i-1).equals("(")) {
-				
-				lista_ops_temp.remove(i-1);
-				
-			}
+			if (lista_ops_temp.get(i-1).equals("(")) lista_ops_temp.remove(i - 1);
 			
 		}
 		
@@ -131,10 +107,7 @@ public class Operador {
 			
 		} else if (expresion_base.get(1).equals("defun")){
 			
-			
 			Funciones.FUNPREP_SET(expresion_base);
-			
-			
 			
 		} else {
 			
@@ -152,11 +125,9 @@ public class Operador {
 				//System.out.println(" ha ocurrido un error al evaluar la expresion");
 				
 			}
-			
-			
+
 		}
-		
-		
+
 	}
 	
 	
@@ -169,14 +140,9 @@ public class Operador {
 				
 				lista.set(i, Funciones.listado_variables.get(lista.get(i)));
 				
-			} else {
-				
-				// no cambiar
-				
 			}
-			
-			
-			
+
+
 		}
 		
 		return lista;
@@ -187,26 +153,14 @@ public class Operador {
 		
 		double resultado = 0;
 		
-		if (op.equals("+")) {
-			
-			resultado = num1 + num2;
-			
-			
-			
-		} else if (op.equals("-")) {
-			
+		if (op.equals("+")) resultado = num1 + num2;
+		else if (op.equals("-")) {
 			resultado = num1 - num2;
-			
-			
-			
 			
 		} else if (op.equals("*")) {
 			
 			resultado = num1 * num2;
-			
-			
-			
-			
+
 		} else if (op.equals("/")) {
 			
 			resultado = num1 / num2;
@@ -242,62 +196,56 @@ public class Operador {
 			}
 			
 		} else {
-		
-		for (int i = 0; i < lista.size(); i++) {
-			
-			
-			boolean isNum;
-			
-			
-			try {
-                Double.parseDouble(lista.get(i));
-                isNum = true;
-            } catch (Exception e) {
-                isNum = false;
-            }
-			
-			if (isNum) {
-				
-				lista_nums.add(Double.parseDouble(lista.get(i)));
-				
-			} else {
-				
-				
-				
-				lista_ops.add(lista.get(i));
-				
+
+			for (String s : lista) {
+
+
+				boolean isNum;
+
+
+				try {
+					Double.parseDouble(s);
+					isNum = true;
+				} catch (Exception e) {
+					isNum = false;
+				}
+
+				if (isNum) {
+
+					lista_nums.add(Double.parseDouble(s));
+
+				} else {
+
+
+					lista_ops.add(s);
+
+				}
+
+
+				if (lista_ops.get(lista_ops.size() - 1).equals(")")) {
+
+
+					String operacion = lista_ops.get(lista_ops.size() - 2);
+					double num1 = lista_nums.get(lista_nums.size() - 2);
+					double num2 = lista_nums.get(lista_nums.size() - 1);
+
+
+					double resultado = op_Binaria(operacion, num1, num2);
+
+					lista_ops.remove(lista_ops.size() - 1);
+					lista_ops.remove(lista_ops.size() - 1);
+					lista_ops.remove(lista_ops.size() - 1);
+
+					lista_nums.remove(lista_nums.size() - 1);
+					lista_nums.remove(lista_nums.size() - 1);
+
+					lista_nums.add(resultado);
+
+
+				}
+
+
 			}
-			
-			
-			
-			if (lista_ops.get(lista_ops.size()-1).equals(")")) {
-				
-				
-				
-				String operacion = lista_ops.get(lista_ops.size()-2);
-				double num1 = lista_nums.get(lista_nums.size()-2);
-				double num2 = lista_nums.get(lista_nums.size()-1);
-				
-				
-				
-				
-				double resultado = op_Binaria(operacion, num1, num2);
-				
-				lista_ops.remove(lista_ops.size()-1);
-				lista_ops.remove(lista_ops.size()-1);
-				lista_ops.remove(lista_ops.size()-1);
-				
-				lista_nums.remove(lista_nums.size()-1);
-				lista_nums.remove(lista_nums.size()-1);
-				
-				lista_nums.add(resultado);
-				
-				
-	
-			}
-			
-			
-	}
 		
 		
 		

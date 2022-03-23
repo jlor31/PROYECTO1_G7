@@ -20,11 +20,8 @@ public class Compare {
 			
 		}
 		
-		if (n1 < n2) {
-			
-			result = "#t";
-			
-		} else {
+		if (n1 < n2) result = "#t";
+		else {
 			
 			result = "#f";
 			
@@ -100,19 +97,20 @@ public class Compare {
 	
 	public static boolean to_bool(String tf) {
 		
-		boolean value = false;
+		boolean value;
 		
 		if (tf.equals("#t")) {
 			
 			value = true;
 			
 		} else if (tf.equals("#f")) {
-			
+
 			value = false;
-			
+
 		} else {
 			
 			System.out.println("Algo no funciono al convertir la expresion booleana");
+			value = false;
 			
 		}
 		

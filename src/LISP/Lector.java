@@ -32,13 +32,12 @@ public class Lector {
 		
 		String[] base = exp_clean.split(",");  // separando el string basandose en comas
 		
-		List<String> lista_base = new ArrayList<String>();  
+		List<String> lista_base;
 		
 		lista_base = Arrays.asList(base);
-		
-		ArrayList<String> lista = new ArrayList<String>();  // conversion definitiva a arraylist
-        
-        lista.addAll(lista_base);
+
+		// conversion definitiva a arraylist
+		ArrayList<String> lista = new ArrayList<>(lista_base);
 		
 		if (lista.get(0).equals("")) {
 			
@@ -88,9 +87,6 @@ public class Lector {
 			else if (i.equals(")")) {
 				
 				cerrados = cerrados +1;
-			}
-			else {
-				
 			}
 		}
 		
