@@ -6,7 +6,9 @@ public class Interprete {
 
 	static Lector lector = new Lector();
 	
-	
+		/**
+	 * @promt console scanner
+	 */
 	public static void prompt() {
 		
 		Scanner in = new Scanner(System.in);
@@ -22,6 +24,10 @@ public class Interprete {
 	}
 	
 	
+	
+	/** 
+	 * @param args[]
+	 */
 	public static void main(String args[]) {
 		System.out.println(" ");
 		System.out.println("------------ INTERPRETE LISP GRUPO 7 ------------");

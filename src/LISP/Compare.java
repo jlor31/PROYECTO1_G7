@@ -2,6 +2,12 @@ package LISP;
 
 public class Compare {
 	
+	
+	/** 
+	 * @param num1
+	 * @param num2
+	 * @return String
+	 */
 	public static String lessthan(String num1, String num2) {
 		
 		String result;
@@ -31,6 +37,12 @@ public class Compare {
 		
 	}
 
+	
+	/** 
+	 * @param num1
+	 * @param num2
+	 * @return String
+	 */
 	public static String greaterthan(String num1, String num2) {
 		
 		String result;
@@ -62,6 +74,12 @@ public class Compare {
 		
 	}
 	
+	
+	/** 
+	 * @param num1
+	 * @param num2
+	 * @return String
+	 */
 	public static String isequal(String num1, String num2) {
 		
 		String result;
@@ -94,6 +112,11 @@ public class Compare {
 		
 	}
 	
+	
+	/** 
+	 * @param tf
+	 * @return boolean
+	 */
 	public static boolean to_bool(String tf) {
 		
 		boolean value;

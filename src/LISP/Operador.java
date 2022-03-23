@@ -14,6 +14,10 @@ public class Operador {
 	private static ArrayList<String> lista_ops_fijo = new ArrayList<>();
 	
 	
+	
+	/** 
+	 * @param expresion
+	 */
 	// (defun sumar ( a b ) ( + a b))
 	// ( + (sumar( 2 3)) (sumar( 1 9)))
 	
@@ -64,6 +68,10 @@ public class Operador {
 		
 	}
 
+	
+	/** 
+	 * @param expresion_base
+	 */
 	public static void asignar_op(ArrayList<String> expresion_base) {
 		
 		if (expresion_base.get(1).equals("setq")) {
@@ -129,6 +137,11 @@ public class Operador {
 
 	}
 
+	
+	/** 
+	 * @param lista
+	 * @return ArrayList<String>
+	 */
 	public static ArrayList<String> sustituir_vars(ArrayList<String> lista) {
 		
 		for (int i = 0; i < lista.size(); i++ ) {
@@ -145,6 +158,13 @@ public class Operador {
 		return lista;
 	}
 	
+	
+	/** 
+	 * @param op
+	 * @param num1
+	 * @param num2
+	 * @return double
+	 */
 	public static double op_Binaria(String op, double num1, double num2) {
 		
 		double resultado = 0;
@@ -174,6 +194,11 @@ public class Operador {
 		return resultado;
 	}
 
+	
+	/** 
+	 * @param lista
+	 * @return Double
+	 */
 	public static Double calcular(ArrayList<String> lista) {
 		
 		lista_nums.clear();

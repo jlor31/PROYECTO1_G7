@@ -11,12 +11,23 @@ public class Funciones {
 	
 	static ArrayList<ArrayList<String>> args_ops = new ArrayList<ArrayList<String>>();
 	
+	
+	/** 
+	 * @param nombre
+	 * @param valor
+	 */
 	public static void SETQ(String nombre, String valor) {
 		
 		listado_variables.put(nombre, valor);
 		
 	}
 	
+	
+	/** 
+	 * @param nombre
+	 * @param args
+	 * @param ops
+	 */
 	public static void DEFUN(String nombre, ArrayList<String> args, ArrayList<String> ops) {  
 		
 		args_ops.add(args);
@@ -28,6 +39,10 @@ public class Funciones {
 		
 	}
 	
+	
+	/** 
+	 * @param lista_base
+	 */
 	public static void FUNPREP_SET(ArrayList<String> lista_base) {
 		
 		// formato (defun <name> (list of arguments) (function body))
@@ -62,6 +77,11 @@ public class Funciones {
 	}
 	
 	
+	
+	/** 
+	 * @param lista_base
+	 * @return Double
+	 */
 	public static Double function_exec(ArrayList<String> lista_base) {
 		
 		// asi llega [(, funcion, (, sumar,(,8,9,),2, 3, 4, ), )]

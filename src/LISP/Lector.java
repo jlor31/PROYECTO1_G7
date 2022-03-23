@@ -7,6 +7,11 @@ public class Lector {
 
 
 	
+	
+	/**
+	 * @param exp
+	 * @return String
+	 */
 	// ArrayList<String>
 	
 	public static String cleaner(String exp) {  // limpiando y eliminando espacios excesivos etc...
@@ -26,6 +31,11 @@ public class Lector {
 	
 	
 	
+	
+	/** 
+	 * @param exp
+	 * @return ArrayList<String>
+	 */
 	public static ArrayList<String> leer(String exp) { 
 	
 		String exp_clean = cleaner(exp);  // limpianod expresion input usuario
