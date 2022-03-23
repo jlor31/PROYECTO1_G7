@@ -63,8 +63,7 @@ public class Operador {
 		lista_ops_fijo.clear();
 		
 	}
-	
-	
+
 	public static void asignar_op(ArrayList<String> expresion_base) {
 		
 		if (expresion_base.get(1).equals("setq")) {
@@ -129,9 +128,7 @@ public class Operador {
 		}
 
 	}
-	
-	
-	
+
 	public static ArrayList<String> sustituir_vars(ArrayList<String> lista) {
 		
 		for (int i = 0; i < lista.size(); i++ ) {
@@ -147,7 +144,6 @@ public class Operador {
 		
 		return lista;
 	}
-	
 	
 	public static double op_Binaria(String op, double num1, double num2) {
 		
@@ -177,10 +173,7 @@ public class Operador {
 		
 		return resultado;
 	}
-	
-	
-	
-	
+
 	public static Double calcular(ArrayList<String> lista) {
 		
 		lista_nums.clear();

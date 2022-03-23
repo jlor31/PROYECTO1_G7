@@ -30,8 +30,7 @@ public class Compare {
 		return result;
 		
 	}
-	
-	
+
 	public static String greaterthan(String num1, String num2) {
 		
 		String result;
