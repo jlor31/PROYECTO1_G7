@@ -6,7 +6,7 @@ Sebastián Reyes
 
 Ingresar la función a definir <br><br>
 Ej:<br>
-*** $(defun sumar ( a b ) ( + a b))<br>***
+***$(defun sumar ( a b ) ( + a b))<br>***
 
 Llamar la función a utilizar e ingresar los parámetros, es importante que se ingrese la función utilizando **doble paréntesis** como se muestra a continuación<br><br>
 Ej:<br>
